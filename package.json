@@ -1,0 +1,19 @@
+{
+    "name": "@bakerkretzmar/paper-doll",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bakerkretzmar/paper-doll.git"
+    },
+    "author": "Jacob Baker-Kretzmar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/bakerkretzmar/paper-doll/issues"
+    },
+    "homepage": "https://github.com/bakerkretzmar/paper-doll#readme"
+}
