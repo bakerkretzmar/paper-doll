@@ -1,11 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="./index.js"></script>
+</head>
 <body class="relative flex items-center justify-center h-screen">
-    <div id="doll" class="pointer-events-none" style="z-index: -50;">
-        <img src="http://ecx.images-amazon.com/images/I/31zHl07mOHL.jpg" alt="barbie">
+    <div id="doll-body" class="pointer-events-none max-w-xl" style="z-index: -50;">
+        <img class="border" src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/doll.png" alt="barbie">
     </div>
-    <div id="shirt" class="absolute w-40" style="left: 4rem; top: 12rem">
-        <img src="https://i.ebayimg.com/images/g/vyIAAOSw3jBaox2N/s-l300.png" alt="shirt">
+
+    <div id="shirt" data-clothing="black-heels" class="absolute max-w-xl" style="left: 4rem; top: 12rem">
+        <img class="border" src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/black%20heels.png" alt="shirt">
     </div>
-    <div id="skirt" class="absolute w-48" style="left: 4rem; top: 24rem">
-        <img src="https://gloimg.zafcdn.com/zaful/pdm-product-pic/Clothing/2017/01/16/goods-first-img/20170116110524_38927.png" alt="skirt">
+
+    <div id="skirt" data-clothing="raincoat" class="absolute max-w-xl" style="left: 4rem; top: 24rem">
+        <img class="border" src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/rain%20coat.png" alt="skirt">
     </div>
 </body>
+</html>
