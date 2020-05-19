@@ -1,4 +1,5 @@
 {
+    "private": true,
     "name": "@bakerkretzmar/paper-doll",
     "version": "1.0.0",
     "description": "",
@@ -11,7 +12,7 @@
         "url": "https://github.com/bakerkretzmar/paper-doll.git"
     },
     "author": "Jacob Baker-Kretzmar",
-    "license": "MIT",
+    "license": "UNLICENSED",
     "bugs": {
         "url": "https://github.com/bakerkretzmar/paper-doll/issues"
     },
