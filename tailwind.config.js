@@ -1,0 +1,12 @@
+module.exports = {
+    purge: ['index.html'],
+    theme: {
+        extend: {
+            width: {
+                '5/8': '62.5%',
+            },
+        },
+    },
+    variants: {},
+    plugins: [],
+}

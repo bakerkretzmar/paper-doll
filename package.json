@@ -1,21 +1,21 @@
 {
     "private": true,
-    "name": "@bakerkretzmar/paper-doll",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "dist": "dist/index.js",
-    "scripts": {
-        "build": "microbundle"
-    },
+    "name": "paper-doll",
+    "author": "Jacob Baker-Kretzmar",
+    "license": "UNLICENSED",
+    "source": "index.js",
+    "main": "dist/index.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/bakerkretzmar/paper-doll.git"
     },
-    "author": "Jacob Baker-Kretzmar",
-    "license": "UNLICENSED",
-    "bugs": {
-        "url": "https://github.com/bakerkretzmar/paper-doll/issues"
+    "scripts": {
+        "build": "microbundle -f iife",
+        "css": "tailwindcss build index.css -o dist/index.css",
+        "prod": "NODE_ENV=production npm run build && npm run css"
     },
-    "homepage": "https://github.com/bakerkretzmar/paper-doll#readme"
+    "devDependencies": {
+        "microbundle": "^0.12.0",
+        "tailwindcss": "^1.4.6"
+    }
 }

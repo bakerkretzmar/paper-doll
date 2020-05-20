@@ -1,0 +1,2 @@
+document.querySelectorAll("[data-clothing]").forEach(function(e){e.ondragstart=function(){return!1},e.ondragend=function(){return!1},e.onmousedown=function(n){var t=n.clientX-e.getBoundingClientRect().left,o=n.clientY-e.getBoundingClientRect().top,u=function(n){e.style.left=n.pageX-t+"px",e.style.top=n.pageY-o+"px"};document.addEventListener("mousemove",u),document.onmouseup=function(){return document.removeEventListener("mousemove",u)}}});
+//# sourceMappingURL=index.js.map
