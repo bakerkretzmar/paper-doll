@@ -2,4 +2,15 @@
 
 @tailwind components;
 
+.doll-width {
+    width: 36rem;
+}
+
+.active .half-doll-width {
+    width: 18rem;
+}
+.active .five-eighths-doll-width {
+    width: 22.5rem;
+}
+
 @tailwind utilities;
