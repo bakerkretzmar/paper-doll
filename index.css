@@ -1,6 +1,6 @@
-@tailwind base;
-
-@tailwind components;
+.last-active {
+    z-index: 100;
+}
 
 .doll-width {
     width: 36rem;

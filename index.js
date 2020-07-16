@@ -77,6 +77,11 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
     item.ondragstart = () => false;
     item.ondragend = () => false;
 
+    item.ondblclick = (event) => {
+        document.querySelectorAll('.last-active').forEach((el) => el.classList.remove('last-active'));
+        item.parentElement.classList.add('last-active');
+    }
+
     item.onmousedown = (event) => {
         item.classList.add('active');
         item.style.position = 'absolute';
