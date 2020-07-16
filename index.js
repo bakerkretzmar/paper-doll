@@ -45,13 +45,13 @@ for (category in clothes) {
         el.dataset.clothing = item;
         el.style.zIndex = clothes[category].z;
 
-        const col = cell % 6;
-        const row = (cell - col) / 6;
-        el.style.position = 'absolute';
-        el.dataset.left = `${2 + 8 * col}rem`;
-        el.style.left = `${2 + 8 * col}rem`;
-        el.dataset.top = `${2 + 10 * row}rem`;
-        el.style.top = `${2 + 10 * row}rem`;
+        // const col = cell % 2;
+        // const row = (cell - col) / 2;
+        // el.style.position = 'absolute';
+        // el.dataset.left = `${2 + 8 * col}rem`;
+        // el.style.left = `${2 + 8 * col}rem`;
+        // el.dataset.top = `${2 + 10 * row}rem`;
+        // el.style.top = `${2 + 10 * row}rem`;
 
         const img = document.createElement('img');
         if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
@@ -60,10 +60,13 @@ for (category in clothes) {
             img.classList.add('half-doll-width', 'w-20');
         }
         img.classList.add('select-none')
-        img.src= `./img/${item}.png`;
+        img.src= `https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/${item}.png`;
 
+        const wrapper = document.createElement('div');
+
+        wrapper.appendChild(el);
         el.appendChild(img);
-        document.body.appendChild(el);
+        document.getElementById('clothes-area').appendChild(wrapper);
         cell++;
     });
 }
@@ -76,6 +79,7 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
 
     item.onmousedown = (event) => {
         item.classList.add('active');
+        item.style.position = 'absolute';
         const offsetX = event.clientX - item.getBoundingClientRect().left;
         const offsetY = event.clientY - item.getBoundingClientRect().top;
 
@@ -90,9 +94,7 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
             if (event.clientX < dollArea.getBoundingClientRect().left) {
                 // If the item was dropped in the clothes area, put it away
                 item.classList.remove('active');
-                item.style.position = 'absolute';
-                item.style.left = item.dataset.left;
-                item.style.top = item.dataset.top;
+                item.style.position = 'static';
             }
         }
     };
