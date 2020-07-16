@@ -41,24 +41,26 @@ let cell = 0;
 
 for (category in clothes) {
     clothes[category].items.forEach((item) => {
-        let el = document.createElement('div');
+        const el = document.createElement('div');
         el.dataset.clothing = item;
         el.style.zIndex = clothes[category].z;
 
-        let col = cell % 6;
-        let row = (cell - col) / 6;
+        const col = cell % 6;
+        const row = (cell - col) / 6;
         el.style.position = 'absolute';
+        el.dataset.left = `${2 + 8 * col}rem`;
         el.style.left = `${2 + 8 * col}rem`;
-    el.style.top = `${2 + 10 * row}rem`;
+        el.dataset.top = `${2 + 10 * row}rem`;
+        el.style.top = `${2 + 10 * row}rem`;
 
-    let img = document.createElement('img');
-    if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
-        img.classList.add('five-eighths-doll-width', 'w-24');
-    } else {
-        img.classList.add('half-doll-width', 'w-20');
-    }
-    img.classList.add('select-none')
-    img.src= `./img/${item}.png`;
+        const img = document.createElement('img');
+        if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
+            img.classList.add('five-eighths-doll-width', 'w-24');
+        } else {
+            img.classList.add('half-doll-width', 'w-20');
+        }
+        img.classList.add('select-none')
+        img.src= `./img/${item}.png`;
 
         el.appendChild(img);
         document.body.appendChild(el);
@@ -74,10 +76,10 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
 
     item.onmousedown = (event) => {
         item.classList.add('active');
-        let offsetX = event.clientX - item.getBoundingClientRect().left;
-        let offsetY = event.clientY - item.getBoundingClientRect().top;
+        const offsetX = event.clientX - item.getBoundingClientRect().left;
+        const offsetY = event.clientY - item.getBoundingClientRect().top;
 
-        let onMove = (event) => {
+        const onMove = (event) => {
             item.style.left = event.pageX - offsetX + 'px';
             item.style.top = event.pageY - offsetY + 'px';
         };
@@ -85,11 +87,13 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
         document.addEventListener('mousemove', onMove);
         document.onmouseup = (event) => {
             document.removeEventListener('mousemove', onMove);
-            // if (event.clientX < dollArea.getBoundingClientRect().left) {
-            //     // If the item was dropped in the clothes area, put it away
-            //     // undo sizing
-            //     item.style.position = 'relative';
-            // }
+            if (event.clientX < dollArea.getBoundingClientRect().left) {
+                // If the item was dropped in the clothes area, put it away
+                item.classList.remove('active');
+                item.style.position = 'absolute';
+                item.style.left = item.dataset.left;
+                item.style.top = item.dataset.top;
+            }
         }
     };
 });
