@@ -1,10 +1,100 @@
 <!-- paper-doll -->
-<link rel="stylesheet" href="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/dist/index.css"></script>
-<script defer src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/dist/index.js"></script>
+<style>
+    .last-active {
+      z-index: 100;
+    }
+
+    .doll-width {
+      width: 36rem;
+    }
+
+    .active .half-doll-width {
+      width: 18rem;
+    }
+
+    .active .five-eighths-doll-width {
+      width: 22.5rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .h-full {
+      height: 100%;
+    }
+
+    .h-screen {
+      height: 100vh;
+    }
+
+    .overflow-scroll {
+      overflow: scroll;
+    }
+
+    .pointer-events-none {
+      pointer-events: none;
+    }
+
+    .static {
+      position: static;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .select-none {
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    }
+
+    .w-20 {
+      width: 5rem;
+    }
+
+    .w-24 {
+      width: 6rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .gap-2 {
+      grid-gap: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+</style>
 <div class="flex h-full w-full">
-    <div id="clothes-area" class="grid grid-cols-2 gap-2 h-full overflow-scroll"></div>
-    <div id="doll-area" class="flex items-center justify-center">
+    <div id="clothes-area" class="grid grid-cols-4 gap-2 h-full"></div>
+    <div id="doll-area">
         <img class="doll-width pointer-events-none select-none" src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/doll.png"/>
     </div>
 </div>
+<script>
+    !function(){var e={accessories:{z:40,items:["red-gloves"]},bottoms:{z:50,items:["black-jeans","black-shorts","blue-jeans","green-pants","plaid-skirt","purple-slacks","quilt-skirt"]},hats:{z:90,items:["green-cowboy","red-cowboy"]},outerwear:{z:80,items:["leather-jacket","rain-coat"]},shoes:{z:30,items:["black-heels","converse","cowboy-boots","orange-heels","pink-heels"]},socks:{z:20,items:["green-socks","pink-socks","white-socks","yellow-socks"]},sweaters:{z:70,items:["black-sweater","orange-sweater"]},tops:{z:60,items:["button-up","pink-jumpsuit","red-dress","torn-tank","yellow-blouse"]},underwear:{z:10,items:["black-tights","bralette","fishnets","orange-tights","purple-tights"]}};for(category in e)e[category].items.forEach(function(t){var s=document.createElement("div");s.dataset.clothing=t,s.style.zIndex=e[category].z;var n=document.createElement("img");["leather-jacket","rain-coat","red-gloves"].includes(t)?n.classList.add("five-eighths-doll-width","w-24"):n.classList.add("half-doll-width","w-20"),n.classList.add("select-none"),n.src="https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/"+t+".png";var o=document.createElement("div");o.appendChild(s),s.appendChild(n),document.getElementById("clothes-area").appendChild(o)});var t=document.getElementById("doll-area");document.querySelectorAll("[data-clothing]").forEach(function(e){e.ondragstart=function(){return!1},e.ondragend=function(){return!1},e.ondblclick=function(t){document.querySelectorAll(".last-active").forEach(function(e){return e.classList.remove("last-active")}),e.parentElement.classList.add("last-active")},e.onmousedown=function(s){e.classList.add("active"),e.style.position="absolute";var n=s.clientX-e.getBoundingClientRect().left,o=s.clientY-e.getBoundingClientRect().top,a=function(t){e.style.left=t.pageX-n+"px",e.style.top=t.pageY-o+"px"};document.addEventListener("mousemove",a),document.onmouseup=function(s){document.removeEventListener("mousemove",a),s.clientX<t.getBoundingClientRect().left&&(e.classList.remove("active"),e.style.position="static")}}})}();
+</script>
 <!-- /paper-doll -->
