@@ -46,14 +46,15 @@ for (let category in clothes) {
 
             const img = document.createElement('img');
             if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
-                img.classList.add('five-eighths-doll-width', 'w-24');
+                img.classList.add('w-24', 'five-eighths-doll-width');
             } else {
-                img.classList.add('half-doll-width', 'w-20');
+                img.classList.add('w-20', 'half-doll-width');
             }
             img.classList.add('select-none');
             img.src = `https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/${item}.png`;
 
             const wrapper = document.createElement('div');
+            wrapper.classList.add('w-24');
 
             el.appendChild(img);
             wrapper.appendChild(el);
