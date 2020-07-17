@@ -29,7 +29,7 @@ const clothes = {
     },
     tops: {
         z: 60,
-        items: ['button-up', 'pink-jumpsuit', 'red-dress', 'torn-tank', 'yellow-blouse'],
+        items: ['button-up', 'pink-jumpsuit', 'red-dress', 'torn-tank', 'yellow-blouse', 'pink-tank-top', 'blue-dress'],
     },
     underwear: {
         z: 10,
