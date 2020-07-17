@@ -21,7 +21,7 @@ const clothes = {
     },
     socks: {
         z: 20,
-        items: ['green-socks', 'pink-socks', 'white-socks', 'yellow-socks',],
+        items: ['green-socks', 'pink-socks', 'white-socks', 'yellow-socks'],
     },
     sweaters: {
         z: 70,
@@ -37,38 +37,30 @@ const clothes = {
     },
 };
 
-let cell = 0;
+for (let category in clothes) {
+    clothes[category].items
+        .map((item, i) => {
+            const el = document.createElement('div');
+            el.dataset.clothing = item;
+            el.style.zIndex = clothes[category].z;
 
-for (category in clothes) {
-    clothes[category].items.forEach((item) => {
-        const el = document.createElement('div');
-        el.dataset.clothing = item;
-        el.style.zIndex = clothes[category].z;
+            const img = document.createElement('img');
+            if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
+                img.classList.add('five-eighths-doll-width', 'w-24');
+            } else {
+                img.classList.add('half-doll-width', 'w-20');
+            }
+            img.classList.add('select-none');
+            img.src = `https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/${item}.png`;
 
-        // const col = cell % 2;
-        // const row = (cell - col) / 2;
-        // el.style.position = 'absolute';
-        // el.dataset.left = `${2 + 8 * col}rem`;
-        // el.style.left = `${2 + 8 * col}rem`;
-        // el.dataset.top = `${2 + 10 * row}rem`;
-        // el.style.top = `${2 + 10 * row}rem`;
+            const wrapper = document.createElement('div');
 
-        const img = document.createElement('img');
-        if (['leather-jacket', 'rain-coat', 'red-gloves'].includes(item)) {
-            img.classList.add('five-eighths-doll-width', 'w-24');
-        } else {
-            img.classList.add('half-doll-width', 'w-20');
-        }
-        img.classList.add('select-none')
-        img.src= `https://raw.githubusercontent.com/bakerkretzmar/paper-doll/master/img/${item}.png`;
+            el.appendChild(img);
+            wrapper.appendChild(el);
 
-        const wrapper = document.createElement('div');
-
-        wrapper.appendChild(el);
-        el.appendChild(img);
-        document.getElementById('clothes-area').appendChild(wrapper);
-        cell++;
-    });
+            return wrapper;
+        })
+        .map((el, i) => (i % 2 ? document.getElementById('clothes-area-l').appendChild(el) : document.getElementById('clothes-area-r').appendChild(el)));
 }
 
 const dollArea = document.getElementById('doll-area');
@@ -80,7 +72,7 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
     item.ondblclick = (event) => {
         document.querySelectorAll('.last-active').forEach((el) => el.classList.remove('last-active'));
         item.parentElement.classList.add('last-active');
-    }
+    };
 
     item.onmousedown = (event) => {
         item.classList.add('active');
@@ -89,18 +81,27 @@ document.querySelectorAll('[data-clothing]').forEach((item) => {
         const offsetY = event.clientY - item.getBoundingClientRect().top;
 
         const onMove = (event) => {
-            item.style.left = event.pageX - offsetX + 'px';
-            item.style.top = event.pageY - offsetY + 'px';
+            item.style.left = `${event.pageX - offsetX}px`;
+            item.style.top = `${event.pageY - offsetY}px`;
         };
 
         document.addEventListener('mousemove', onMove);
+
         document.onmouseup = (event) => {
             document.removeEventListener('mousemove', onMove);
-            if (event.clientX < dollArea.getBoundingClientRect().left) {
+
+            if (
+                event.clientX < dollArea.getBoundingClientRect().left ||
+                event.clientX > dollArea.getBoundingClientRect().right ||
+                event.clientY < dollArea.getBoundingClientRect().top ||
+                event.clientY > dollArea.getBoundingClientRect().bottom
+            ) {
                 // If the item was dropped in the clothes area, put it away
                 item.classList.remove('active');
                 item.style.position = 'static';
+                item.style.left = null;
+                item.style.top = null;
             }
-        }
+        };
     };
 });
