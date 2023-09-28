@@ -1,4 +1,4 @@
-## [oddthing.ca/my-closet](https://oddthing.ca/my-closet)
+## [oddthing.ca/mycloset](https://oddthing.ca/mycloset)
 
 ![](preview.gif)
 
